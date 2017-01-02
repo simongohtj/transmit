@@ -1,0 +1,28 @@
+﻿<Controls:MetroWindow x:Class="Transmit.RunningView"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Transmit"
+        mc:Ignorable="d"
+        Title="Pub-Sub-ing... ..." Height="350" Width="525" Icon="zmq.ico" Background="#FF2B2B2E" Closing="MetroWindow_Closing">
+    <Controls:MetroWindow.DataContext>
+        <local:RunningViewModel/>
+    </Controls:MetroWindow.DataContext>
+    <Grid>
+        <Label x:Name="label" Content="I'm hearing..." HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20"/>
+        <Label x:Name="label1" Content="I'm saying..." HorizontalAlignment="Left" Margin="5,204,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" Width="138"/>
+        <TextBox x:Name="TextBoxSend" HorizontalAlignment="Left" Height="23" Margin="10,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" Text="{Binding CommsModel.SendMessage}"/>
+        <TextBox x:Name="TextBoxReceived" HorizontalAlignment="Left" Height="23" Margin="10,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="499" Text="{Binding Path=CommsModel.ReceivedMessage}"/>
+        <Button x:Name="ButtonSend" Content="Send" HorizontalAlignment="Left" Margin="460,233,0,0" VerticalAlignment="Top" Width="49" Style="{DynamicResource MetroCircleButtonStyle}" Height="49" Foreground="White" Command="{Binding OnClick_BtnSend, Mode=OneWay}" CommandParameter="{Binding Text, ElementName=TextBoxSend}"/>
+        <Label Content="from" HorizontalAlignment="Right" Margin="0,83,301,0" VerticalAlignment="Top" FontSize="20" Foreground="White"/>
+        <Label Content="from port" HorizontalAlignment="Right" Margin="0,276,126,0" VerticalAlignment="Top" FontSize="20" Foreground="White" Width="97"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,153,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="497" Height="31" Foreground="White" FontSize="20"/>
+        <Controls:ToggleSwitch Header="Auto reply" Margin="330,184,64,82" Background="White" Foreground="White" ThumbIndicatorBrush="#FF2034FF" FontSize="16" RenderTransformOrigin="1.382,-2.439" Controls:ControlsHelper.HeaderFontSize="16" Controls:ControlsHelper.HeaderMargin="0" />
+        <Label x:Name="lblOtherIP" Content="{Binding OtherIP, Mode=OneWay}" HorizontalAlignment="Right" Margin="0,83,145,0" VerticalAlignment="Top" FontSize="20" Foreground="White" Width="156" FontWeight="Bold"/>
+        <Label x:Name="lblOtherPort" Content="{Binding OtherPort, Mode=OneWay}" HorizontalAlignment="Right" Margin="0,83,10,0" VerticalAlignment="Top" FontSize="20" Foreground="White" Width="66" FontWeight="Bold"/>
+        <Label Content="on port" HorizontalAlignment="Right" Margin="0,83,76,0" VerticalAlignment="Top" FontSize="20" Foreground="White" Width="78"/>
+        <Label x:Name="lblMePort" Content="{Binding MePort, Mode=OneWay}" HorizontalAlignment="Right" Margin="0,276,62,0" VerticalAlignment="Top" FontSize="20" Foreground="White" FontWeight="Bold"/>
+    </Grid>
+</Controls:MetroWindow>
